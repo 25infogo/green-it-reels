@@ -227,3 +227,32 @@ Sizda qaysi belgi bor? 👇
 {CONTACT}
 
 #virus #antivirus {TAGS}"""))
+
+# ─── Брендовый стиль владельца (assets/brand): кинематографичный фон в крючке + фирменная концовка ───
+HOOK_BG = {
+    "01_kompyuter_tezlashtirish": ("clip1.mp4", 0.0),
+    "02_litsenziya_tekshirish": ("clip4.mp4", 7.5),
+    "03_noutbuk_xatolar": ("clip3.mp4", 0.0),
+    "04_telefon_xotira": ("clip5.mp4", 1.0),
+    "05_wifi_sekin": ("clip2.mp4", 0.0),
+    "06_windows_tugmalar": ("clip2.mp4", 1.8),
+    "07_rezyume_onlayn": ("clip4.mp4", 8.5),
+    "08_virus_belgilari": ("clip1.mp4", 2.0),
+}
+OUTRO = {"src": "clip1.mp4", "from": 6.6, "dim": 0.0}   # «LITSENZIYALI DASTURLAR» + телефон, Telegram, WhatsApp
+OUTRO_LEN = 3.0
+CTA_LEN = 2.4
+
+def brandify(r, hook_bg=None):
+    """Крючок поверх размытого брендового клипа, короткий CTA «saqlab qo'ying», затем фирменная концовка."""
+    scenes = r["scenes"]
+    src, frm = hook_bg or HOOK_BG.get(r["slug"], ("clip1.mp4", 0.0))
+    scenes[0]["bg"] = {"src": src, "from": frm, "blur": 14, "dim": 0.55}
+    cta = scenes[-1]
+    cta["t1"] = cta["t0"] + CTA_LEN
+    scenes.append({"type": "clip", "t0": cta["t1"], "t1": cta["t1"] + OUTRO_LEN, "bg": dict(OUTRO)})
+    r["dur"] = cta["t1"] + OUTRO_LEN
+    return r
+
+for _r in REELS:
+    brandify(_r)

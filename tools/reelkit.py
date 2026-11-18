@@ -18,21 +18,22 @@ def font(p, s):
     if k not in _fc: _fc[k] = ImageFont.truetype(p, s)
     return _fc[k]
 
-GREEN = (34, 197, 94); RED = (239, 68, 68); WHITE = (255, 255, 255)
-MUTED = (170, 190, 180); KEYBG = (30, 41, 36); DARK = (5, 20, 10)
-PILL = {"n": ((30, 50, 40), WHITE), "g": (GREEN, DARK), "r": (RED, WHITE), "w": (WHITE, (10, 30, 18))}
+GREEN = (56, 200, 255)   # фирменный неоново-голубой из роликов владельца
+GOLD = (255, 196, 46); RED = (239, 68, 68); WHITE = (255, 255, 255)
+MUTED = (165, 185, 205); KEYBG = (22, 34, 50); DARK = (4, 14, 26)
+PILL = {"n": ((26, 42, 62), WHITE), "g": (GREEN, DARK), "r": (RED, WHITE), "w": (WHITE, (10, 30, 18))}
 MAXW = 960
 
 def make_bg():
     y = np.linspace(0, 1, H)[:, None]
-    top = np.array([8, 14, 12]); bot = np.array([10, 38, 24])
+    top = np.array([5, 9, 16]); bot = np.array([8, 24, 42])
     g = (top + (bot - top) * y)[:, None, :].repeat(W, axis=1).reshape(H, W, 3)
     img = Image.fromarray(g.astype(np.uint8)).convert("RGBA")
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
     for x in range(0, W, 90): od.line([(x, 0), (x, H)], fill=(255, 255, 255, 10))
     for yy in range(0, H, 90): od.line([(0, yy), (W, yy)], fill=(255, 255, 255, 10))
     glow = Image.new("RGBA", (W, H), (0, 0, 0, 0)); gd = ImageDraw.Draw(glow)
-    gd.ellipse([W * 0.15, H * 0.30, W * 0.85, H * 0.62], fill=(34, 197, 94, 40))
+    gd.ellipse([W * 0.15, H * 0.30, W * 0.85, H * 0.62], fill=(56, 200, 255, 38))
     glow = glow.filter(ImageFilter.GaussianBlur(160))
     return Image.alpha_composite(Image.alpha_composite(img, ov), glow).convert("RGB")
 BG = None
@@ -90,7 +91,7 @@ def keys(img, y, labels, t0, t, gap=22):
             else:
                 hh = 130 * sc; ww = w * (0.6 + 0.4 * p); cx = x + w / 2; cy = y + 65
                 d.rounded_rectangle([cx - ww / 2, cy - hh / 2 + 10, cx + ww / 2, cy + hh / 2 + 10], 24,
-                                    fill=(12, 20, 16, int(255 * a)))
+                                    fill=(8, 14, 24, int(255 * a)))
                 d.rounded_rectangle([cx - ww / 2, cy - hh / 2, cx + ww / 2, cy + hh / 2], 24,
                                     fill=KEYBG + (int(255 * a),), outline=GREEN + (int(255 * a),), width=4)
                 fs = font(FBo, max(10, 58 * sc))
@@ -109,7 +110,7 @@ def run_box(img, y, typed, t0, t, title="Ishga tushirish  (Win + R)"):
     d.rectangle([x0, y + 50 + dy, x1, y + 80 + dy], fill=(225, 230, 228, A))
     d.text((x0 + 34, y + 20 + dy), title, font=font(FM, 36), fill=(40, 50, 45, A))
     d.rounded_rectangle([x0 + 34, y + 130 + dy, x1 - 34, y + 240 + dy], 12,
-                        fill=(255, 255, 255, A), outline=(34, 140, 80, A), width=4)
+                        fill=(255, 255, 255, A), outline=(30, 120, 200, A), width=4)
     fm = font(FMONO, 56)
     n = int(len(typed) * prog(t, t0 + 0.35, t0 + 0.35 + 0.08 * len(typed)))
     s = typed[:n]
@@ -187,15 +188,61 @@ def scene_cta(img, t, s):
     text_c(img, y + 410, "+998 91 448 23 88", FB, 70, WHITE, ease_out(prog(lt, 2.4, 2.7)))
     text_c(img, y + 530, s.get("tags", "Ta'mirlash • Windows • Litsenziya"), FM, 44, MUTED, ease_out(prog(lt, 2.7, 3.0)))
 
-SCENES = {"hook": scene_hook, "step": scene_step, "cta": scene_cta}
+def scene_clip(img, t, s):
+    """Чистый фрагмент брендового ролика (без наложений), например финал с контактами."""
+    pass
+
+SCENES = {"hook": scene_hook, "step": scene_step, "cta": scene_cta, "clip": scene_clip}
+
+# ---------- фоновые видеоклипы (брендовые ролики владельца) ----------
+import os
+ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "brand")
+
+class ClipReader:
+    """Последовательно отдаёт кадры клипа 1080x1920 @30fps через ffmpeg (зацикливает при нехватке)."""
+    def __init__(self, src, start=0.0):
+        self.src, self.start = src, start; self.p = None; self._open(start)
+    def _open(self, start):
+        if self.p: self.p.kill()
+        self.p = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-ss", str(start), "-i", self.src, "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+    def next(self):
+        buf = self.p.stdout.read(W * H * 3)
+        if len(buf) < W * H * 3:
+            self._open(self.start); buf = self.p.stdout.read(W * H * 3)
+        return Image.frombuffer("RGB", (W, H), buf)
+    def close(self):
+        if self.p: self.p.kill()
+
+_readers = {}
+def clip_frame(s, t, sequential=True):
+    bg = s["bg"]; src = bg["src"] if os.path.isabs(bg["src"]) else os.path.join(ASSETS, bg["src"])
+    key = id(s)
+    if not sequential:
+        r = ClipReader(src, bg.get("from", 0) + (t - s["t0"])); im = r.next(); r.close()
+    else:
+        if key not in _readers: _readers[key] = ClipReader(src, bg.get("from", 0) + (t - s["t0"]))
+        im = _readers[key].next()
+    if bg.get("blur"):
+        im = im.resize((W // 4, H // 4)).filter(ImageFilter.GaussianBlur(bg["blur"] / 4)).resize((W, H), Image.BILINEAR)
+    dim = bg.get("dim", 0.45)
+    if dim > 0:
+        im = Image.blend(im, Image.new("RGB", (W, H), (4, 8, 16)), dim)
+    return im
+SEQUENTIAL = True
 
 def frame(spec, t):
-    img = BG.copy().convert("RGBA")
+    base = BG
+    for s in spec["scenes"]:
+        if s.get("bg") and s["t0"] <= t < s.get("t1", spec["dur"] + 1):
+            base = clip_frame(s, t, SEQUENTIAL)
+    img = base.copy().convert("RGBA")
     for s in spec["scenes"]:
         if s["t0"] <= t < s.get("t1", spec["dur"] + 1):
             SCENES[s["type"]](img, t, s)
     d = ImageDraw.Draw(img)
-    d.rectangle([0, 0, W, 12], fill=(25, 40, 32)); d.rectangle([0, 0, W * clamp(t / spec["dur"]), 12], fill=GREEN)
+    d.rectangle([0, 0, W, 12], fill=(20, 32, 48)); d.rectangle([0, 0, W * clamp(t / spec["dur"]), 12], fill=GREEN)
     return img.convert("RGB")
 
 def render(spec, out, audio=None):
@@ -210,9 +257,12 @@ def render(spec, out, audio=None):
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for i in range(n): p.stdin.write(frame(spec, i / FPS).tobytes())
     p.stdin.close(); p.wait()
+    for r in _readers.values(): r.close()
+    _readers.clear()
 
 def preview(spec, times, out):
-    global BG
+    global BG, SEQUENTIAL
+    SEQUENTIAL = False
     if BG is None: BG = make_bg()
     ims = [frame(spec, t).resize((270, 480)) for t in times]
     sheet = Image.new("RGB", (270 * len(ims), 480))
