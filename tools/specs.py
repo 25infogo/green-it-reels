@@ -256,3 +256,95 @@ def brandify(r, hook_bg=None):
 
 for _r in REELS:
     brandify(_r)
+
+# ─── Озвучка (v3): узбекский дикторский текст по сценам, голос Navoiy TTS (mehribon / warm) ───
+# Порядок фраз = порядок сцен: hook, step…, cta, clip. Символы и команды записаны словами для произношения.
+OUTRO_VO = "Green IT, Qorovulbozor. Raqam ekranda."
+SAVE = "Saqlab qo'ying, kerak bo'ladi!"
+VOICE = {
+    "01_kompyuter_tezlashtirish": [
+        "Kompyuteringiz qotyaptimi? O'ttiz soniyada tezlashtiramiz.",
+        "Birinchi usul: keraksiz fayllarni o'chiring. Win va R ni bosing, persent temp persent deb yozing. "
+        "Kontrol va A ni bosib, hammasini o'chiring.",
+        "Ikkinchi usul: avtoyuklashni o'chiring. Kontrol, Shift va Esk tugmalarini bosing, "
+        "avtozagruzka bo'limida keraksiz dasturni o'chirib qo'ying.",
+        "Uchinchi usul: diskni tozalang. Win va R, klin em ge er deb yozing va Enter ni bosing. "
+        "Disk C ni tanlab, okey bosing.",
+        SAVE, OUTRO_VO],
+    "02_litsenziya_tekshirish": [
+        "Vindousingiz originalmi? O'n soniyada tekshiring.",
+        "Win va R ni bosing va yozing: es el em ge er, slesh, iks pe er. Keyin Enter ni bosing.",
+        "Natijaga qarang. Doimiy faollashgan deb chiqsa, litsenziya original. "
+        "Muddat yoki xato chiqsa, bu aktivator. Aktivatorlar ko'pincha virus olib keladi.",
+        "Original litsenziya, bir yil kafolat bilan. Saqlab qo'ying!",
+        OUTRO_VO],
+    "03_noutbuk_xatolar": [
+        "Noutbukni bunday qilmang! Uchta katta xato.",
+        "Birinchi xato: yumshoq joyda ishlatish. Ko'rpa yoki divanda havo kirmaydi, noutbuk qizib ketadi. "
+        "Qattiq stol yoki podstavka ishlating.",
+        "Ikkinchi xato: zaryadni nolga tushirish. Yigirmadan sakson foizgacha oraliqda saqlang, "
+        "batareya uzoqroq xizmat qiladi.",
+        "Uchinchi xato: changni tozalamaslik. Ventilyator chang bilan to'ladi, noutbuk qiziydi va sekinlashadi. "
+        "Yilda bir marta profilaktika qiling.",
+        SAVE, OUTRO_VO],
+    "04_telefon_xotira": [
+        "Telefon xotirasi to'ldimi? Telegramni tozalaymiz.",
+        "Telegram keshini tozalang. Sozlamalar, ma'lumotlar va xotira, xotiradan foydalanish, "
+        "keyin keshni tozalash tugmasini bosing.",
+        "Endi avtomatik yuklab olishni o'chiring. Bir necha gigabayt joy bo'shaydi.",
+        SAVE, OUTRO_VO],
+    "05_wifi_sekin": [
+        "Internetingiz sekinmi? Uchta oddiy sabab.",
+        "Birinchi: routerni qayta yoqing. Rozetkadan chiqaring, o'ttiz soniya kuting va qayta yoqing.",
+        "Ikkinchi: router joyini o'zgartiring. Shkaf ichida yoki polda emas, baland va ochiq joyga qo'ying. "
+        "Devorlar signalni susaytiradi.",
+        "Uchinchi: parolni almashtiring. Qo'shnilar ulanib olgan bo'lishi mumkin. "
+        "Kamida o'nta belgidan iborat kuchli parol qo'ying.",
+        SAVE, OUTRO_VO],
+    "06_windows_tugmalar": [
+        "Bu tugmalarni bilasizmi? Vindous uchun beshta sir.",
+        "Win va De: ish stoliga bir zumda.",
+        "Win va El: kompyuterni qulflash.",
+        "Win, Shift va Es: ekran rasmini olish.",
+        "Win va Ve: nusxalar tarixi.",
+        "Kontrol, Shift va Te: yopilgan sahifani qaytarish.",
+        "Saqlab qo'ying! Yana kerak bo'lsa, izohga yana deb yozing.",
+        OUTRO_VO],
+    "07_rezyume_onlayn": [
+        "Rezyume besh daqiqada. Telefondan, onlayn.",
+        "Birinchi: saytga kiring. Havola profilimizda.",
+        "Ikkinchi: ma'lumotlarni to'ldiring. Ism va familiya, tug'ilgan sana, ta'lim, ish joylari va rasm.",
+        "Uchinchi: tayyor pe de ef faylni yuklab oling. Obyektivka ham bor. To'lov Klik yoki Peymi orqali.",
+        "Havola profilda. Saqlab qo'ying!",
+        OUTRO_VO],
+    "08_virus_belgilari": [
+        "Kompyuterda virus bormi? To'rtta belgi.",
+        "Birinchi belgi: reklama oynalari o'zi ochiladi, brauzer yopiq bo'lsa ham.",
+        "Ikkinchi belgi: bosh sahifa o'zgargan, siz esa uni o'zgartirmagansiz.",
+        "Uchinchi belgi: protsessor yuz foiz band, hech narsa ochilmagan bo'lsa ham.",
+        "To'rtinchi belgi: fayllar yo'qolyapti yoki nomi o'zgargan.",
+        "Belgi bormi? Virusni tozalaymiz. Saqlab qo'ying!",
+        OUTRO_VO],
+}
+VO_PAD = 0.4     # запас после фразы, с
+VO_LEAD = 0.15   # задержка начала фразы от начала сцены, с
+
+def apply_voice(r, vo_durs, pad=VO_PAD, lead=VO_LEAD):
+    """Длительность сцены = max(исходная, фраза + lead + pad); t0/t1 и dur пересчитываются,
+    времена появления элементов шага растягиваются пропорционально, чтобы надписи шли за речью.
+    vo_durs — длительности фраз по сценам (None/0 — без голоса). Возвращает старты фраз (с)."""
+    t = 0.0; starts = []
+    for s, d in zip(r["scenes"], vo_durs):
+        orig = s["t1"] - s["t0"]
+        p_ = 0.1 if s["type"] == "clip" else pad   # концовка: клип владельца длится 10 с (с 6.6 с — максимум 3.4 с)
+        new = max(orig, d + lead + p_) if d else orig
+        k = new / orig
+        if k > 1 and s["type"] == "step":
+            for it in s["items"]:
+                it["at"] = round(it["at"] * k, 2)
+                if "until" in it: it["until"] = round(it["until"] * k, 2)
+        s["t0"], s["t1"] = round(t, 3), round(t + new, 3)
+        starts.append(s["t0"] + lead if d else None)
+        t += new
+    r["dur"] = round(t, 3)
+    return starts
