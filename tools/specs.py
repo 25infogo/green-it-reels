@@ -190,18 +190,20 @@ REELS.append(dict(slug="07_rezyume_onlayn", dur=22, scenes=[
         T(2.0, "To'lov: Click / Payme", 1130)]),
     dict(type="cta", t0=18, top="ONLAYN XIZMAT", main="Havola profilda", ask="Savol bormi?",
          tags="Rezyume • Obyektivka • Hujjatlar"),
-], caption=f"""Rezyume 5 daqiqada — telefondan, onlayn 📄
+], caption=f"""Rezyume kerakmi? Kompyuter va navbat shart emas — telefondan, onlayn 📄
 
-1️⃣ green-it-service.uz/resume saytiga kiring (havola profilda)
-2️⃣ Ma'lumotlaringizni to'ldiring
-3️⃣ Tayyor PDF ni yuklab oling — chop etishga tayyor
+✍️ Ma'lumotlaringizni to'g'ridan-to'g'ri saytga yozing
+⏱ 10 daqiqada tayyor PDF — chop etishga tayyor
+📋 Rezyume va ma'lumotnoma (obyektivka) formatlari
+💳 To'lov: Click / Payme
 
-Ma'lumotnoma (obyektivka) formati ham bor. To'lov: Click / Payme.
-Savol bo'lsa — izohda yozing 👇
+👉 green-it-service.uz/resume — havola profilda
+
+Savol bo'lsa — Direct'ga yoki izohga yozing 👇
 
 {CONTACT}
 
-#rezyume #obyektivka {TAGS}"""))
+#rezyume #obyektivka #ish #vakansiya {TAGS}"""))
 
 # 8 ─ Virus belgilari
 def sym(t0, t1, num, h1, h2, txt):
@@ -348,3 +350,122 @@ def apply_voice(r, vo_durs, pad=VO_PAD, lead=VO_LEAD):
         t += new
     r["dur"] = round(t, 3)
     return starts
+
+# ─── Серия про резюме (v3, ноябрь 2026): «пишете прямо на сайте — PDF за 10 минут» ───
+RESUME_URL = "green-it-service.uz/resume"
+RESUME_CTA = "Havola profilda. Saqlab qo'ying!"
+RESUME_REELS = []
+
+RESUME_REELS.append(dict(slug="09_rezyume_xatolar", dur=24, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="REZYUMENGIZNI", l2="O'QISHMAYAPTIMI?", sub="3 ta katta xato"),
+    dict(type="step", t0=3, t1=7.5, num="1 / 3", h1="Rasm yo'q", h2="yoki sifatsiz", items=[
+        P(0.4, [("Selfi, qorong'i rasm", "r")], y=820, arrows=False),
+        P(1.4, [("Toza fon, rasmiy kiyim", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=7.5, t1=12, num="2 / 3", h1="Ish joylari", h2="yozilmagan", items=[
+        P(0.4, [("Faqat ism va telefon", "r")], y=820, arrows=False),
+        P(1.4, [("Ta'lim + ish joylari + ko'nikmalar", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=12, t1=16.5, num="3 / 3", h1="Tartibsiz", h2="format", items=[
+        P(0.4, [("Har xil shrift, siljigan jadval", "r")], y=820, arrows=False),
+        P(1.4, [("Tayyor PDF shablon", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=16.5, t1=21, num="YECHIM", h1="Saytga yozing —", h2="10 daqiqada PDF", items=[
+        P(0.4, [(RESUME_URL, "g")], y=860, arrows=False), T(1.4, "Havola profilda", 1040)]),
+    dict(type="cta", t0=21, top="REZYUME ONLAYN", main="10 daqiqada tayyor PDF", ask="Havola profilda",
+         tags="Rezyume • Obyektivka • PDF"),
+], caption=f"""Rezyumengizni o'qishmayaptimi? 3 ta katta xato ❌
+
+1️⃣ Rasm yo'q yoki sifatsiz — selfi emas, toza fonda rasmiy rasm
+2️⃣ Ish joylari yozilmagan — ta'lim, tajriba, ko'nikmalar bo'lishi shart
+3️⃣ Tartibsiz format — har xil shrift, siljigan jadval
+
+✅ Yechim: ma'lumotlarni to'g'ridan-to'g'ri saytga yozing — 10 daqiqada tayyor PDF
+👉 {RESUME_URL} (havola profilda)
+💳 To'lov: Click / Payme
+
+🔖 Saqlab qo'ying! Savol bo'lsa — Direct'ga yozing 👇
+
+{CONTACT}
+
+#rezyume #ish #vakansiya {TAGS}"""))
+
+RESUME_REELS.append(dict(slug="10_obyektivka_onlayn", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="OBYEKTIVKA", l2="KERAKMI?", sub="Telefondan, 10 daqiqada"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Saytga", h2="kiring", items=[
+        P(0.4, [(RESUME_URL, "g")], y=860, arrows=False), T(1.4, "Havola profilda", 1040)]),
+    dict(type="step", t0=8, t1=13.5, num="2 / 3", h1="Ma'lumotlarni", h2="yozing", items=[
+        P(0.4, [("F.I.Sh, tug'ilgan sana", "n"), ("Ma'lumoti, mutaxassisligi", "n"), ("Ish faoliyati", "n")],
+          y=800, arrows=False, gap=140, stagger=0.6)]),
+    dict(type="step", t0=13.5, t1=18, num="3 / 3", h1="10 daqiqada", h2="tayyor PDF", items=[
+        P(0.4, [("Obyektivka — chop etishga tayyor", "g")], y=860, arrows=False),
+        T(1.4, "To'lov: Click / Payme", 1040)]),
+    dict(type="cta", t0=18, top="OBYEKTIVKA ONLAYN", main="10 daqiqada tayyor PDF", ask="Havola profilda",
+         tags="Obyektivka • Rezyume • Hujjatlar"),
+], caption=f"""Obyektivka (ma'lumotnoma) kerakmi? Telefondan, 10 daqiqada 📋
+
+1️⃣ {RESUME_URL} saytiga kiring (havola profilda)
+2️⃣ Ma'lumotlaringizni to'g'ridan-to'g'ri saytga yozing
+3️⃣ 10 daqiqada tayyor PDF — chop etishga tayyor
+
+Kompyuter markaziga borish va navbat kutish shart emas.
+💳 To'lov: Click / Payme
+
+🔖 Saqlab qo'ying! Savol bo'lsa — Direct'ga yozing 👇
+
+{CONTACT}
+
+#obyektivka #malumotnoma #rezyume {TAGS}"""))
+
+RESUME_REELS.append(dict(slug="11_rezyume_telefondan", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="KOMPYUTER", l2="SHART EMAS!", sub="Rezyume — telefondan"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Navbat kutish", h2="kerak emas", items=[
+        P(0.4, [("Kompyuter markaziga borish", "r")], y=820, arrows=False),
+        P(1.4, [("Uyda, telefondan yozish", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=8, t1=13, num="2 / 3", h1="To'g'ridan-to'g'ri", h2="saytga yozing", items=[
+        P(0.4, [(RESUME_URL, "g")], y=860, arrows=False), T(1.4, "Havola profilda", 1040)]),
+    dict(type="step", t0=13, t1=18, num="3 / 3", h1="10 daqiqada", h2="tayyor PDF", items=[
+        P(0.4, [("Rezyume", "n"), ("Obyektivka", "n")], y=820, arrows=False, gap=140, stagger=0.6),
+        T(1.8, "To'lov: Click / Payme", 1140)]),
+    dict(type="cta", t0=18, top="ONLAYN XIZMAT", main="10 daqiqada tayyor PDF", ask="Havola profilda",
+         tags="Rezyume • Obyektivka • PDF"),
+], caption=f"""Rezyume uchun kompyuter shart emas — hammasi telefondan 📱
+
+✍️ Ma'lumotlaringizni to'g'ridan-to'g'ri saytga yozasiz
+⏱ 10 daqiqada tayyor PDF
+📋 Rezyume va obyektivka formatlari
+💳 To'lov: Click / Payme
+
+👉 {RESUME_URL} — havola profilda
+
+Ish qidirayotgan do'stingizga yuboring 👇
+
+{CONTACT}
+
+#rezyume #obyektivka #ish {TAGS}"""))
+
+HOOK_BG.update({"09_rezyume_xatolar": ("clip4.mp4", 8.5), "10_obyektivka_onlayn": ("clip5.mp4", 1.0),
+                "11_rezyume_telefondan": ("clip5.mp4", 0.0)})
+for _r in RESUME_REELS:
+    brandify(_r)
+REELS.extend(RESUME_REELS)
+
+VOICE.update({
+    "09_rezyume_xatolar": [
+        "Rezyumengizni o'qishmayaptimi? Uchta katta xato bor.",
+        "Birinchi xato: rasm yo'q yoki sifatsiz. Selfi emas, toza fonda rasmiy rasm qo'ying.",
+        "Ikkinchi xato: ish joylari yozilmagan. Ta'lim, ish tajribasi va ko'nikmalarni albatta yozing.",
+        "Uchinchi xato: tartibsiz format. Har xil shrift va siljigan jadval yomon taassurot qoldiradi.",
+        "Yechim: ma'lumotlarni to'g'ridan-to'g'ri saytga yozing. O'n daqiqada tayyor pe de ef olasiz.",
+        RESUME_CTA, OUTRO_VO],
+    "10_obyektivka_onlayn": [
+        "Obyektivka kerakmi? Telefondan, o'n daqiqada.",
+        "Birinchi: saytga kiring. Havola profilimizda.",
+        "Ikkinchi: ma'lumotlaringizni to'g'ridan-to'g'ri saytga yozing. Ism, tug'ilgan sana, ma'lumotingiz va ish faoliyatingiz.",
+        "Uchinchi: o'n daqiqada tayyor pe de ef ni yuklab oling va chop eting. To'lov Klik yoki Peymi orqali.",
+        RESUME_CTA, OUTRO_VO],
+    "11_rezyume_telefondan": [
+        "Rezyume uchun kompyuter shart emas! Hammasi telefondan.",
+        "Kompyuter markaziga borish va navbat kutish kerak emas. Uyda, telefondan yozasiz.",
+        "Ma'lumotlarni to'g'ridan-to'g'ri saytga yozing. Havola profilimizda.",
+        "O'n daqiqada tayyor pe de ef. Rezyume ham, obyektivka ham bor. To'lov Klik yoki Peymi orqali.",
+        "Havola profilda. Do'stlaringizga ham yuboring!",
+        OUTRO_VO],
+})

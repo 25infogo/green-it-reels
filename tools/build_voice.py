@@ -5,7 +5,7 @@ VO_DIR содержит <slug>__<i>.wav (фраза сцены i), SAVE.wav (м�
 import os, subprocess, sys, wave
 import numpy as np, soundfile as sf
 from reelkit import render
-from specs import REELS, VOICE, SAVE, OUTRO_VO, apply_voice
+from specs import REELS, VOICE, SAVE, OUTRO_VO, RESUME_CTA, apply_voice
 
 SR = 44100
 MUSIC_SPEECH, MUSIC_FREE = 0.20, 0.32   # громкость музыки во время речи / без речи
@@ -14,6 +14,7 @@ VOICE_RMS = 0.11                        # целевой RMS речи (≈ −19
 def vo_path(vo, slug, i, text):
     if text == SAVE: return os.path.join(vo, "SAVE.wav")
     if text == OUTRO_VO: return os.path.join(vo, "OUTRO.wav")
+    if text == RESUME_CTA: return os.path.join(vo, "RESUME_CTA.wav")
     return os.path.join(vo, f"{slug}__{i}.wav")
 
 def load(path):
