@@ -469,3 +469,281 @@ VOICE.update({
         "Havola profilda. Do'stlaringizga ham yuboring!",
         OUTRO_VO],
 })
+
+# ─── Серия по категориям услуг (v3, 27.11–04.12.2026): принтеры, телефоны, сети/удалённая помощь, Windows/Office ───
+SERVICE_REELS = []
+
+SERVICE_REELS.append(dict(slug="12_printer_chop_etmayapti", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="PRINTER", l2="CHOP ETMAYAPTIMI?", sub="3 ta tekshiruv"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Ulanishni", h2="tekshiring", items=[
+        P(0.4, [("Kabel yoki Wi-Fi ulanganmi?", "n"), ("Qog'oz bormi, qopqoq yopiqmi?", "n")],
+          y=820, arrows=False, gap=150, stagger=0.8)]),
+    dict(type="step", t0=8, t1=14, num="2 / 3", h1="Navbatni", h2="tozalang", items=[
+        P(0.4, [("Sozlamalar", "n"), ("Printerlar va skanerlar", "n"), ("Navbatni ochish", "n"),
+                ("Hammasini bekor qilish", "g")], y=780, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Printerni", h2="qayta yoqing", items=[
+        P(0.4, [("O'chiring, 30 soniya kuting", "n"), ("Qayta yoqing", "g")], y=820, stagger=0.8),
+        T(2.4, "Keyin yana chop etib ko'ring", 1180)]),
+    dict(type="cta", t0=19, top="PRINTER USTASI", main="Saqlab qo'ying — kerak bo'ladi", ask="Yordam bermadimi?",
+         tags="Printer • Ta'mirlash • Kartrij"),
+], caption=f"""Printer chop etmayaptimi? Ustaga borishdan oldin 3 ta tekshiruv 🖨
+
+1️⃣ Kabel yoki Wi-Fi ulanganmi, qog'oz bormi, qopqoq yopiqmi
+2️⃣ Sozlamalar → Printerlar va skanerlar → Navbatni ochish → Hammasini bekor qilish
+3️⃣ Printerni o'chiring, 30 soniyadan keyin qayta yoqing
+
+🔖 Saqlab qo'ying! Yordam bermasa — printerni o'rnatamiz va ta'mirlaymiz.
+Sizda qanday printer? Izohda yozing 👇
+
+{CONTACT}
+
+#printer #kartrij {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="13_kartrij_tejash", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="KARTRIJ", l2="TEZ TUGAYAPTIMI?", sub="3 ta tejash usuli",
+         meter=("Kartrij", 0.15, RED)),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Tejamkor", h2="rejimni yoqing", items=[
+        P(0.4, [("Chop etish sozlamalari", "n"), ("Qoralama / Draft", "g")], y=820, stagger=0.8),
+        T(2.4, "Hujjatlar uchun yetarli", 1180)]),
+    dict(type="step", t0=8, t1=13, num="2 / 3", h1="Faqat kerakli", h2="sahifalarni", items=[
+        P(0.4, [("Avval ko'rib chiqing", "n"), ("Sahifalar: 1-3", "g")], y=820, stagger=0.8)]),
+    dict(type="step", t0=13, t1=18, num="3 / 3", h1="Siyoh qurib", h2="qolmasin", items=[
+        P(0.4, [("Siyohli printer", "n")], y=820, arrows=False),
+        T(1.2, "Haftada 1 sahifa chop eting", 980, col=GREEN, size=56)]),
+    dict(type="cta", t0=18, meter=("Kartrij", 0.15, 0.95, RED, GREEN), ask="Kartrij to'ldirish kerakmi?",
+         tags="Kartrij • Printer • Ta'mirlash"),
+], caption=f"""Kartrij tez tugayaptimi? 3 ta tejash usuli 🖨
+
+1️⃣ Chop etish sozlamalarida «Qoralama / Draft» rejimini yoqing — hujjatlar uchun yetarli
+2️⃣ Avval ko'rib chiqing va faqat kerakli sahifalarni chop eting
+3️⃣ Siyohli printerda haftada kamida 1 sahifa chop eting — siyoh qurib qolmaydi
+
+🔖 Saqlab qo'ying! Kartrijni to'ldiramiz, printerni ta'mirlaymiz.
+Siz qaysi usulni bilmagansiz? Izohda yozing 👇
+
+{CONTACT}
+
+#kartrij #printer {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="14_telefon_reklama", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="TELEFONDA", l2="REKLAMA CHIQAVERADIMI?", sub="Android: 3 ta qadam"),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Shubhali ilovani", h2="o'chiring", items=[
+        P(0.4, [("Sozlamalar", "n"), ("Ilovalar", "n"), ("Notanish ilova → O'chirish", "g")], y=800, stagger=0.8),
+        T(3.0, "Reklama boshlangan kuni o'rnatilgan ilova", 1300)]),
+    dict(type="step", t0=8.5, t1=14, num="2 / 3", h1="Sayt bildirish-", h2="nomalarini o'chiring", items=[
+        P(0.4, [("Chrome", "n"), ("Sozlamalar → Bildirishnomalar", "n"), ("Saytlarni o'chirish", "g")],
+          y=800, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Play Protect", h2="tekshiruvi", items=[
+        P(0.4, [("Play Market → Profil", "n"), ("Play Protect", "n"), ("Tekshirish", "g")], y=800, stagger=0.8)]),
+    dict(type="cta", t0=19, top="TOZA TELEFON", main="Saqlab qo'ying — kerak bo'ladi", ask="Reklama ketmadimi?",
+         tags="Tozalash • Proshivka • Dasturlar"),
+], caption=f"""Telefonda reklama o'zi chiqaveradimi? Android uchun 3 ta qadam 📱
+
+1️⃣ Sozlamalar → Ilovalar → reklama boshlangan paytda o'rnatilgan notanish ilovani o'chiring
+2️⃣ Chrome → Sozlamalar → Bildirishnomalar → saytlar bildirishnomasini o'chiring
+3️⃣ Play Market → Profil → Play Protect → Tekshirish
+
+🔖 Saqlab qo'ying! Reklama ketmasa — telefonni viruslardan tozalaymiz, kerak bo'lsa proshivka qilamiz.
+Sizda qanday telefon? Izohda yozing 👇
+
+{CONTACT}
+
+#telefon #android {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="15_telefon_sekin", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="TELEFONINGIZ", l2="SEKINLASHDIMI?", sub="3 ta oddiy qadam",
+         meter=("Tezlik", 0.2, RED)),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Tizimni", h2="yangilang", items=[
+        P(0.4, [("Sozlamalar", "n"), ("Tizim yangilanishi", "n"), ("Yangilash", "g")], y=800, stagger=0.8)]),
+    dict(type="step", t0=8.5, t1=13.5, num="2 / 3", h1="Keraksiz", h2="ilovalarni o'chiring", items=[
+        P(0.4, [("Oylab ochilmagan ilovalar", "r")], y=820, arrows=False),
+        T(1.4, "Ular fonda xotira va batareyani yeydi", 980, size=46)]),
+    dict(type="step", t0=13.5, t1=18, num="3 / 3", h1="Haftada bir", h2="qayta yoqing", items=[
+        P(0.4, [("Qayta ishga tushirish", "g")], y=860, arrows=False),
+        T(1.4, "Xotira tozalanadi, telefon yengillashadi", 1020, size=46)]),
+    dict(type="cta", t0=18, meter=("Tezlik", 0.2, 0.9, RED, GREEN), ask="Yordam bermadimi?",
+         tags="Proshivka • Dasturlar • Tozalash"),
+], caption=f"""Telefoningiz sekinlashdimi? 3 ta oddiy qadam 📱
+
+1️⃣ Sozlamalar → Tizim yangilanishi → Yangilash
+2️⃣ Oylab ochilmagan ilovalarni o'chiring — ular fonda xotira va batareyani yeydi
+3️⃣ Haftada bir marta telefonni qayta ishga tushiring
+
+🔖 Saqlab qo'ying! Yordam bermasa — dasturini qayta o'rnatamiz (proshivka).
+Telefoningiz necha yillik? Izohda yozing 👇
+
+{CONTACT}
+
+#telefon #proshivka {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="16_wifi_himoya", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="WI-FI ROUTERINGIZ", l2="HIMOYALANGANMI?", sub="3 ta muhim sozlama"),
+    dict(type="step", t0=3, t1=9, num="1 / 3", h1="Router parolini", h2="almashtiring", items=[
+        P(0.4, [("Brauzerda: 192.168.0.1 yoki 192.168.1.1", "n")], y=820, arrows=False),
+        P(1.6, [("admin / admin", "r")], y=980, arrows=False),
+        T(2.6, "Standart parolni albatta almashtiring", 1160)]),
+    dict(type="step", t0=9, t1=14, num="2 / 3", h1="Shifrlashni", h2="tanlang", items=[
+        P(0.4, [("WPA2 yoki WPA3", "g")], y=860, arrows=False),
+        T(1.4, "Ochiq tarmoq yoki WEP — xavfli", 1020, col=RED, size=50)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="WPS ni", h2="o'chiring", items=[
+        P(0.4, [("WPS: O'chirish", "g")], y=860, arrows=False),
+        T(1.4, "Begonalar tugma orqali ulana olmaydi", 1020, size=46)]),
+    dict(type="cta", t0=19, top="TARMOQ XAVFSIZLIGI", main="Saqlab qo'ying — kerak bo'ladi", ask="Sozlash kerakmi?",
+         tags="Router • Wi-Fi • Xavfsizlik"),
+], caption=f"""Wi-Fi routeringiz himoyalanganmi? 3 ta muhim sozlama 🔐
+
+1️⃣ Brauzerda 192.168.0.1 yoki 192.168.1.1 ni oching — standart «admin» parolini almashtiring
+2️⃣ Shifrlash: WPA2 yoki WPA3 (ochiq tarmoq va WEP xavfli)
+3️⃣ WPS ni o'chiring — begonalar tugma orqali ulana olmaydi
+
+🔖 Saqlab qo'ying! Routerni sozlaymiz, tarmoqni himoyalaymiz.
+Routeringiz parolini oxirgi marta qachon almashtirgansiz? 👇
+
+{CONTACT}
+
+#wifi #xavfsizlik {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="17_masofaviy_yordam", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="USTAGA BORISH", l2="SHART EMAS!", sub="Masofaviy yordam"),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Bizga", h2="yozing", items=[
+        P(0.4, [("Telefon yoki Telegram", "g")], y=860, arrows=False),
+        T(1.4, "Muammoni qisqacha tushuntiring", 1020)]),
+    dict(type="step", t0=8.5, t1=14, num="2 / 3", h1="Kompyuterga", h2="masofadan ulanamiz", items=[
+        P(0.4, [("Windows va dasturlar o'rnatish", "n"), ("Xatolarni tuzatish", "n"), ("Sozlash", "n")],
+          y=800, arrows=False, gap=140, stagger=0.6)]),
+    dict(type="step", t0=14, t1=19, num="QOIDA", h1="Xavfsizlik", h2="birinchi o'rinda", items=[
+        P(0.4, [("Faqat o'zingiz chaqirgan ustaga", "g")], y=820, arrows=False),
+        P(1.6, [("Notanish «bank xodimi»ga — YO'Q", "r")], y=980, arrows=False),
+        T(2.8, "Ish tugagach ulanishni uzing", 1160)]),
+    dict(type="cta", t0=19, top="MASOFAVIY YORDAM", main="Uydan chiqmasdan", ask="Yordam kerakmi?",
+         tags="Windows • Dasturlar • Sozlash"),
+], caption=f"""Kompyuter muammosi? Ustaga borish shart emas — masofaviy yordam 💻
+
+1️⃣ Bizga qo'ng'iroq qiling yoki Telegram'da yozing
+2️⃣ Kompyuteringizga masofadan ulanamiz: Windows va dasturlar o'rnatish, xatolarni tuzatish, sozlash
+3️⃣ Xavfsizlik qoidasi: kompyuterga faqat o'zingiz chaqirgan ustani ulang. Notanish «bank xodimi» yoki «texnik yordam» so'rasa — ruxsat bermang. Ish tugagach ulanishni uzing.
+
+🔖 Saqlab qo'ying! Savol bo'lsa — Direct'ga yozing 👇
+
+{CONTACT}
+
+#masofaviyyordam #kompyuter {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="18_windows_himoya", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="ANTIVIRUS", l2="YOQILGANMI?", sub="Windows'da 1 daqiqada tekshiring"),
+    dict(type="step", t0=3, t1=9, num="1 / 3", h1="Windows Security", h2="ni oching", items=[
+        K(0.4, ["Win", "+", "I"], until=2.4),
+        P(1.6, [("Maxfiylik va xavfsizlik", "n"), ("Windows Security", "g")], y=1000, stagger=0.8)]),
+    dict(type="step", t0=9, t1=14, num="2 / 3", h1="Tez tekshiruvni", h2="ishga tushiring", items=[
+        P(0.4, [("Viruslardan himoya", "n"), ("Tez tekshiruv / Quick scan", "g")], y=820, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Yangilanishlarni", h2="o'rnating", items=[
+        P(0.4, [("Windows Update", "n"), ("Yangilanishlarni tekshirish", "g")], y=820, stagger=0.8),
+        T(2.4, "Himoya faqat yangilangan tizimda ishlaydi", 1180, size=44)]),
+    dict(type="cta", t0=19, top="ORIGINAL ANTIVIRUS", main="1 yil kafolat bilan", ask="Himoya kerakmi?",
+         tags="Antivirus • Windows • Litsenziya"),
+], caption=f"""Kompyuteringizda antivirus yoqilganmi? 1 daqiqada tekshiring 🛡
+
+1️⃣ Win + I → Maxfiylik va xavfsizlik → Windows Security
+2️⃣ Viruslardan himoya → Tez tekshiruv (Quick scan)
+3️⃣ Windows Update → Yangilanishlarni tekshirish — himoya faqat yangilangan tizimda to'liq ishlaydi
+
+🔖 Saqlab qo'ying! Original Windows va antivirus litsenziyasi — 1 yil kafolat bilan.
+Tekshiruv nima ko'rsatdi? Izohda yozing 👇
+
+{CONTACT}
+
+#antivirus #windows {TAGS}"""))
+
+SERVICE_REELS.append(dict(slug="19_word_tiklash", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="WORD FAYL", l2="SAQLANMAY QOLDIMI?", sub="Qaytarish mumkin!"),
+    dict(type="step", t0=3, t1=9.5, num="1 / 2", h1="Saqlanmagan", h2="hujjatni tiklang", items=[
+        P(0.4, [("Fayl → Ma'lumotlar", "n"), ("Hujjatni boshqarish", "n"), ("Saqlanmagan hujjatlarni tiklash", "g")],
+          y=800, stagger=0.9)]),
+    dict(type="step", t0=9.5, t1=15.5, num="2 / 2", h1="Avtosaqlashni", h2="sozlang", items=[
+        P(0.4, [("Fayl → Parametrlar → Saqlash", "n"), ("Har 1 daqiqada avtosaqlash", "g")], y=820, stagger=0.9),
+        T(2.6, "Endi ish yo'qolmaydi", 1180, col=GREEN, size=56)]),
+    dict(type="cta", t0=15.5, top="OFFICE O'RNATISH", main="Original litsenziya", ask="Office kerakmi?",
+         tags="Word • Excel • Office"),
+], caption=f"""Word fayl saqlanmay yopilib qoldimi? Uni qaytarish mumkin 📝
+
+1️⃣ Word → Fayl → Ma'lumotlar → Hujjatni boshqarish → Saqlanmagan hujjatlarni tiklash
+2️⃣ Fayl → Parametrlar → Saqlash → «Har 1 daqiqada avtosaqlash» ni yoqing
+
+🔖 Saqlab qo'ying — bir kun albatta kerak bo'ladi!
+Office o'rnatish va original litsenziya — 1 yil kafolat bilan.
+Sizda shunday bo'lganmi? Izohda yozing 👇
+
+{CONTACT}
+
+#word #office {TAGS}"""))
+
+HOOK_BG.update({"12_printer_chop_etmayapti": ("clip6.mp4", 0.0), "13_kartrij_tejash": ("clip6.mp4", 2.0),
+                "14_telefon_reklama": ("clip5.mp4", 0.0), "15_telefon_sekin": ("clip5.mp4", 1.0),
+                "16_wifi_himoya": ("clip2.mp4", 0.0), "17_masofaviy_yordam": ("clip2.mp4", 7.5),
+                "18_windows_himoya": ("clip3.mp4", 0.0), "19_word_tiklash": ("clip4.mp4", 7.5)})
+for _r in SERVICE_REELS:
+    brandify(_r)
+REELS.extend(SERVICE_REELS)
+
+VOICE.update({
+    "12_printer_chop_etmayapti": [
+        "Printer chop etmayaptimi? Ustaga borishdan oldin uchta tekshiruv.",
+        "Birinchi: ulanishni tekshiring. Kabel yoki Vay-Fay ulanganmi, qog'oz bormi, qopqoq yopiqmi?",
+        "Ikkinchi: navbatni tozalang. Sozlamalar, printerlar va skanerlar, navbatni ochish, "
+        "keyin hammasini bekor qiling.",
+        "Uchinchi: printerni o'chiring, o'ttiz soniya kuting va qayta yoqing. Keyin yana chop etib ko'ring.",
+        "Saqlab qo'ying! Yordam bermasa, printerni ta'mirlaymiz.",
+        OUTRO_VO],
+    "13_kartrij_tejash": [
+        "Kartrij tez tugayaptimi? Uchta tejash usuli.",
+        "Birinchi: tejamkor rejimni yoqing. Chop etish sozlamalarida qoralama rejimini tanlang, hujjatlar uchun yetarli.",
+        "Ikkinchi: avval ko'rib chiqing va faqat kerakli sahifalarni chop eting.",
+        "Uchinchi: siyohli printerda haftada kamida bitta sahifa chop eting, shunda siyoh qurib qolmaydi.",
+        "Saqlab qo'ying! Kartrijni to'ldiramiz.",
+        OUTRO_VO],
+    "14_telefon_reklama": [
+        "Telefonda reklama o'zi chiqaveradimi? Uchta qadam.",
+        "Birinchi: shubhali ilovani o'chiring. Sozlamalar, ilovalar. Reklama boshlangan paytda o'rnatilgan "
+        "notanish ilovani o'chiring.",
+        "Ikkinchi: Xrom sozlamalarida bildirishnomalar bo'limiga kiring va saytlar bildirishnomasini o'chiring.",
+        "Uchinchi: Pley Marketda profilni bosing, Pley Protekt bo'limida tekshirish tugmasini bosing.",
+        "Saqlab qo'ying! Reklama ketmasa, telefonni tozalaymiz.",
+        OUTRO_VO],
+    "15_telefon_sekin": [
+        "Telefoningiz sekinlashdimi? Uchta oddiy qadam.",
+        "Birinchi: tizimni yangilang. Sozlamalar, tizim yangilanishi, yangilash.",
+        "Ikkinchi: oylab ochilmagan ilovalarni o'chiring. Ular fonda xotira va batareyani yeydi.",
+        "Uchinchi: haftada bir marta telefonni qayta ishga tushiring.",
+        "Saqlab qo'ying! Yordam bermasa, proshivka qilamiz.",
+        OUTRO_VO],
+    "16_wifi_himoya": [
+        "Vay-Fay routeringiz himoyalanganmi? Uchta muhim sozlama.",
+        "Birinchi: router parolini almashtiring. Brauzerda router manzilini oching. "
+        "Standart admin parolini albatta almashtiring.",
+        "Ikkinchi: shifrlash turini ve pe a ikki yoki ve pe a uch qilib tanlang. Ochiq tarmoq xavfli.",
+        "Uchinchi: ve pe es funksiyasini o'chiring. Begonalar tugma orqali ulana olmaydi.",
+        "Saqlab qo'ying! Routerni sozlab beramiz.",
+        OUTRO_VO],
+    "17_masofaviy_yordam": [
+        "Kompyuter muammosi? Ustaga borish shart emas.",
+        "Bizga qo'ng'iroq qiling yoki Telegramda yozing, muammoni qisqacha tushuntiring.",
+        "Kompyuteringizga masofadan ulanamiz. Vindous va dasturlar o'rnatamiz, xatolarni tuzatamiz.",
+        "Muhim qoida: faqat o'zingiz chaqirgan ustaga ruxsat bering. Notanish bank xodimiga ruxsat bermang. "
+        "Ish tugagach ulanishni uzing.",
+        "Uydan chiqmasdan yordam. Saqlab qo'ying!",
+        OUTRO_VO],
+    "18_windows_himoya": [
+        "Antivirus yoqilganmi? Bir daqiqada tekshiring.",
+        "Win va I tugmalarini bosing. Maxfiylik va xavfsizlik, keyin Vindous Sekyuriti bo'limini oching.",
+        "Viruslardan himoya bo'limida tez tekshiruvni ishga tushiring.",
+        "Vindous Apdeyt bo'limida yangilanishlarni tekshiring. Himoya faqat yangilangan tizimda to'liq ishlaydi.",
+        "Original antivirus, bir yil kafolat bilan. Saqlab qo'ying!",
+        OUTRO_VO],
+    "19_word_tiklash": [
+        "Vord fayl saqlanmay yopilib qoldimi? Uni qaytarish mumkin!",
+        "Fayl, ma'lumotlar, hujjatni boshqarish, keyin saqlanmagan hujjatlarni tiklash tugmasini bosing.",
+        "Endi avtosaqlashni sozlang. Fayl, parametrlar, saqlash. Har bir daqiqada avtosaqlashni yoqing. "
+        "Endi ish yo'qolmaydi.",
+        "Ofis o'rnatamiz, original litsenziya. Saqlab qo'ying!",
+        OUTRO_VO],
+})

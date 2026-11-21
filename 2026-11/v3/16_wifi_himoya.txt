@@ -1,0 +1,13 @@
+Wi-Fi routeringiz himoyalanganmi? 3 ta muhim sozlama 🔐
+
+1️⃣ Brauzerda 192.168.0.1 yoki 192.168.1.1 ni oching — standart «admin» parolini almashtiring
+2️⃣ Shifrlash: WPA2 yoki WPA3 (ochiq tarmoq va WEP xavfli)
+3️⃣ WPS ni o'chiring — begonalar tugma orqali ulana olmaydi
+
+🔖 Saqlab qo'ying! Routerni sozlaymiz, tarmoqni himoyalaymiz.
+Routeringiz parolini oxirgi marta qachon almashtirgansiz? 👇
+
+Kompyuter ta'mirlash, Windows o'rnatish, litsenziya — Green IT, Qorovulbozor
+📞 +998 91 448 23 88
+
+#wifi #xavfsizlik #kompyuterustasi #qorovulbozor #buxoro
