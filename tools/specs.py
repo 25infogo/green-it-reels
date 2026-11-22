@@ -747,3 +747,270 @@ VOICE.update({
         "Ofis o'rnatamiz, original litsenziya. Saqlab qo'ying!",
         OUTRO_VO],
 })
+
+# ─── Ежедневная серия (10 роликов в день), выпуск 23.11.2026 ───
+DAILY_REELS = []
+
+DAILY_REELS.append(dict(slug="20_parol_qoidalari", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="PAROLINGIZ", l2="KUCHLIMI?", sub="3 ta oddiy qoida"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Kamida", h2="12 ta belgi", items=[
+        P(0.4, [("123456, ism, tug'ilgan yil", "r")], y=820, arrows=False),
+        P(1.4, [("Uzun ibora + raqam + belgi", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=8, t1=13, num="2 / 3", h1="Har bir saytga", h2="boshqa parol", items=[
+        T(0.4, "Bitta parol o'g'irlansa — hammasi ochiladi", 840, size=46),
+        P(1.6, [("Telegram ≠ Pochta ≠ Bank", "g")], y=1000, arrows=False)]),
+    dict(type="step", t0=13, t1=18, num="3 / 3", h1="Ikki bosqichli", h2="himoyani yoqing", items=[
+        P(0.4, [("Parol + SMS yoki kod", "g")], y=860, arrows=False),
+        T(1.4, "Parolni bilsa ham kira olmaydi", 1020)]),
+    dict(type="cta", t0=18, top="XAVFSIZLIK", main="Saqlab qo'ying — kerak bo'ladi", ask="Parolingiz qanday?",
+         tags="Xavfsizlik • Sozlash • Himoya"),
+], caption=f"""Parolingiz kuchlimi? 3 ta oddiy qoida 🔐
+
+1️⃣ Kamida 12 ta belgi: 123456, ism yoki tug'ilgan yil emas — uzun ibora + raqam + belgi
+2️⃣ Har bir saytga boshqa parol: bittasi o'g'irlansa, hammasi ochilib qolmaydi
+3️⃣ Ikki bosqichli himoyani yoqing: parolni bilsa ham kira olmaydi
+
+🔖 Saqlab qo'ying! Parolingizni oxirgi marta qachon almashtirgansiz? 👇
+
+{CONTACT}
+
+#parol #xavfsizlik {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="21_telegram_himoya", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="TELEGRAMINGIZNI", l2="O'G'IRLASHMASIN!", sub="3 ta sozlama"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Kodni hech kimga", h2="bermang", items=[
+        P(0.4, [("Telegram kodi faqat siz uchun", "g")], y=820, arrows=False),
+        P(1.6, [("«Kodni ayting» — firibgar", "r")], y=980, arrows=False)]),
+    dict(type="step", t0=8, t1=14, num="2 / 3", h1="Ikki bosqichli", h2="parol qo'ying", items=[
+        P(0.4, [("Sozlamalar", "n"), ("Maxfiylik va xavfsizlik", "n"), ("Ikki bosqichli tekshiruv", "g")],
+          y=800, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Begona qurilmalarni", h2="chiqarib yuboring", items=[
+        P(0.4, [("Sozlamalar → Qurilmalar", "n"), ("Boshqa seanslarni tugatish", "g")], y=820, stagger=0.8)]),
+    dict(type="cta", t0=19, top="TELEGRAM HIMOYASI", main="Saqlab qo'ying — kerak bo'ladi", ask="Yordam kerakmi?",
+         tags="Telefon • Xavfsizlik • Sozlash"),
+], caption=f"""Telegram akkauntingizni o'g'irlashmasin! 3 ta sozlama 🔐
+
+1️⃣ Telegram kodini hech kimga bermang — «adashib yubordim, kodni ayting» deganlar firibgar
+2️⃣ Sozlamalar → Maxfiylik va xavfsizlik → Ikki bosqichli tekshiruv — qo'shimcha parol qo'ying
+3️⃣ Sozlamalar → Qurilmalar → begona qurilma bo'lsa, «Boshqa seanslarni tugatish»
+
+🔖 Saqlab qo'ying va yaqinlaringizga yuboring 👇
+
+{CONTACT}
+
+#telegram #xavfsizlik {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="22_fleshka_yorliq", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="FLESHKADAGI FAYLLAR", l2="YORLIQQA AYLANDIMI?", sub="Bu virus — fayllar joyida"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Yorliqlarni", h2="ochmang", items=[
+        P(0.4, [("Yorliqni bosish = virusni ishga tushirish", "r")], y=860, arrows=False)]),
+    dict(type="step", t0=8, t1=14, num="2 / 3", h1="Yashirin fayllarni", h2="ko'rsating", items=[
+        P(0.4, [("Provodnik", "n"), ("Ko'rinish", "n"), ("Yashirin elementlar ✓", "g")], y=800, stagger=0.8),
+        T(3.0, "Fayllaringiz yashiringan, o'chmagan", 1300, col=GREEN, size=48)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Antivirus bilan", h2="tekshiring", items=[
+        P(0.4, [("Fleshka → o'ng tugma", "n"), ("Viruslarga tekshirish", "g")], y=820, stagger=0.8)]),
+    dict(type="cta", t0=19, top="FAYLLARNI QUTQARAMIZ", main="Saqlab qo'ying — kerak bo'ladi", ask="Yordam kerakmi?",
+         tags="Antivirus • Fleshka • Tozalash"),
+], caption=f"""Fleshkadagi fayllar yorliqqa aylandimi? Bu virus — fayllaringiz o'chmagan 💾
+
+1️⃣ Yorliqlarni ochmang — har bosishda virus ishga tushadi
+2️⃣ Provodnik → Ko'rinish → «Yashirin elementlar» belgisini qo'ying — fayllaringiz ko'rinadi
+3️⃣ Fleshkani antivirus bilan tekshiring (o'ng tugma → Viruslarga tekshirish)
+
+🔖 Saqlab qo'ying! O'zingiz uddalay olmasangiz — fayllarni qutqarib, virusni tozalaymiz.
+Sizda shunday bo'lganmi? 👇
+
+{CONTACT}
+
+#fleshka #virus {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="23_noutbuk_batareya", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="NOUTBUK ZARYADI", l2="TEZ TUGAYAPTIMI?", sub="3 ta sozlama",
+         meter=("Batareya", 0.18, RED)),
+    dict(type="step", t0=3, t1=9, num="1 / 3", h1="Energiya tejash", h2="rejimi", items=[
+        K(0.4, ["Win", "+", "I"], until=2.4),
+        P(1.6, [("Tizim → Quvvat va batareya", "n"), ("Energiya tejash", "g")], y=1000, stagger=0.8)]),
+    dict(type="step", t0=9, t1=14, num="2 / 3", h1="Ekran yorqinligini", h2="kamaytiring", items=[
+        P(0.4, [("100% → 50–60%", "g")], y=860, arrows=False),
+        T(1.4, "Ekran eng ko'p quvvat yeydi", 1020)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Fondagi dasturlarni", h2="yoping", items=[
+        K(0.4, ["Ctrl", "+", "Shift", "+", "Esc"], until=2.4),
+        P(1.6, [("Keraksiz dastur → Vazifani tugatish", "g")], y=1000, arrows=False)]),
+    dict(type="cta", t0=19, meter=("Batareya", 0.18, 0.85, RED, GREEN), ask="Batareya almashtirish kerakmi?",
+         tags="Noutbuk • Batareya • Ta'mirlash"),
+], caption=f"""Noutbuk zaryadi tez tugayaptimi? 3 ta sozlama 🔋
+
+1️⃣ Win + I → Tizim → Quvvat va batareya → Energiya tejash
+2️⃣ Ekran yorqinligini 50–60% ga tushiring — ekran eng ko'p quvvat yeydi
+3️⃣ Ctrl + Shift + Esc → keraksiz dasturlarni «Vazifani tugatish»
+
+🔖 Saqlab qo'ying! Yordam bermasa — batareyani tekshiramiz va almashtiramiz.
+Noutbukingiz necha soat ishlaydi? 👇
+
+{CONTACT}
+
+#noutbuk #batareya {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="24_kompyuter_ovoz", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="KOMPYUTERDA", l2="OVOZ YO'QMI?", sub="3 ta tekshiruv"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Ovoz belgisini", h2="tekshiring", items=[
+        P(0.4, [("Pastki o'ng burchakdagi belgi", "n"), ("O'chirilgan emasmi?", "g")], y=820, stagger=0.8)]),
+    dict(type="step", t0=8, t1=14, num="2 / 3", h1="To'g'ri qurilmani", h2="tanlang", items=[
+        P(0.4, [("Sozlamalar → Tizim → Ovoz", "n"), ("Chiqish: Karnay / Naushnik", "g")], y=820, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Avtomatik", h2="tuzatish", items=[
+        P(0.4, [("Ovoz belgisi → o'ng tugma", "n"), ("Ovoz muammolarini aniqlash", "g")], y=820, stagger=0.8)]),
+    dict(type="cta", t0=19, top="OVOZ QAYTDI?", main="Saqlab qo'ying — kerak bo'ladi", ask="Yordam kerakmi?",
+         tags="Drayver • Windows • Ta'mirlash"),
+], caption=f"""Kompyuterda ovoz yo'qmi? Ustaga borishdan oldin 3 ta tekshiruv 🔈
+
+1️⃣ Pastki o'ng burchakdagi ovoz belgisi — o'chirilgan emasmi
+2️⃣ Sozlamalar → Tizim → Ovoz → chiqish qurilmasini to'g'ri tanlang (karnay yoki naushnik)
+3️⃣ Ovoz belgisi → o'ng tugma → «Ovoz muammolarini aniqlash»
+
+🔖 Saqlab qo'ying! Yordam bermasa — drayverni o'rnatamiz va sozlaymiz.
+Qaysi biri yordam berdi? 👇
+
+{CONTACT}
+
+#kompyuter #windows {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="25_excel_tugmalar", dur=24, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="EXCEL'DA", l2="TEZ ISHLANG!", sub="5 ta foydali tugma"),
+    key_step(3, 7, "1 / 5", "Ustunlar", "yig'indisi", ["Alt", "+", "="]),
+    key_step(7, 11, "2 / 5", "Bugungi", "sana", ["Ctrl", "+", ";"]),
+    key_step(11, 15, "3 / 5", "Filtr", "qo'yish", ["Ctrl", "+", "Shift", "+", "L"]),
+    key_step(15, 19, "4 / 5", "Jadval oxiriga", "sakrash", ["Ctrl", "+", "↓"]),
+    key_step(19, 23, "5 / 5", "Oxirgi amalni", "takrorlash", ["F4"]),
+    dict(type="cta", t0=23, top="EXCEL SIRLARI", main="Saqlab qo'ying — kerak bo'ladi", ask="Yana kerakmi?",
+         tags="Izohga «EXCEL» deb yozing"),
+], caption=f"""Excel'da tez ishlang: 5 ta foydali tugma 📊
+
+1️⃣ Alt + = — ustun yig'indisi (avtosumma)
+2️⃣ Ctrl + ; — bugungi sana
+3️⃣ Ctrl + Shift + L — filtr qo'yish
+4️⃣ Ctrl + ↓ — jadval oxiriga sakrash
+5️⃣ F4 — oxirgi amalni takrorlash
+
+🔖 Saqlab qo'ying! Yana kerak bo'lsa, izohga «EXCEL» deb yozing 👇
+Office o'rnatish va original litsenziya — 1 yil kafolat bilan.
+
+{CONTACT}
+
+#excel #office {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="26_sms_kod_firibgar", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="SMS KODINI", l2="SO'RASHDIMI?", sub="Bu firibgar!"),
+    dict(type="step", t0=3, t1=8, num="1 / 3", h1="Bank kod", h2="so'ramaydi", items=[
+        P(0.4, [("«Bank xodimi»: kodni ayting", "r")], y=820, arrows=False),
+        P(1.6, [("Bankka o'zingiz qo'ng'iroq qiling", "g")], y=980, arrows=False)]),
+    dict(type="step", t0=8, t1=13, num="2 / 3", h1="Havolalarni", h2="tekshiring", items=[
+        P(0.4, [("«Yutuq», «bonus», «karta bloklandi»", "r")], y=820, arrows=False),
+        T(1.6, "Notanish havolaga karta ma'lumotini kiritmang", 980, size=44)]),
+    dict(type="step", t0=13, t1=18, num="3 / 3", h1="Kod — faqat", h2="o'zingiz uchun", items=[
+        P(0.4, [("Click, Payme, bank, Telegram", "n")], y=820, arrows=False),
+        T(1.4, "Hech kimga aytmang", 980, col=GREEN, size=56)]),
+    dict(type="cta", t0=18, top="EHTIYOT BO'LING", main="Yaqinlaringizga yuboring", ask="Sizga ham yozishganmi?",
+         tags="Xavfsizlik • Telefon • Himoya"),
+], caption=f"""SMS kodini so'rashdimi? Bu firibgar! ⚠️
+
+1️⃣ Bank hech qachon SMS kodni so'ramaydi — «bank xodimi» qo'ng'iroq qilsa, telefonni qo'ying va bankka o'zingiz qo'ng'iroq qiling
+2️⃣ «Yutuq», «bonus», «karta bloklandi» degan havolalarga karta ma'lumotini kiritmang
+3️⃣ Click, Payme, bank va Telegram kodlari — faqat siz uchun, hech kimga aytmang
+
+🔖 Saqlab qo'ying va ota-onangizga yuboring 👇
+Sizga ham shunday yozishganmi?
+
+{CONTACT}
+
+#firibgarlik #xavfsizlik {TAGS}"""))
+
+DAILY_REELS.append(dict(slug="27_telefon_skaner", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="SKANER", l2="SHART EMAS!", sub="Hujjatni telefonda skanerlang"),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Android:", h2="Google Disk", items=[
+        P(0.4, [("Google Disk", "n"), ("+ tugmasi", "n"), ("Skanerlash", "g")], y=800, stagger=0.8)]),
+    dict(type="step", t0=8.5, t1=14, num="2 / 3", h1="iPhone:", h2="Zametki", items=[
+        P(0.4, [("Zametki (Notes)", "n"), ("Kamera belgisi", "n"), ("Hujjatlarni skanerlash", "g")], y=800, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Tayyor", h2="PDF", items=[
+        P(0.4, [("Chetlarini to'g'rilang → Saqlash", "g")], y=860, arrows=False),
+        T(1.4, "Telegram yoki pochtaga yuboring", 1020)]),
+    dict(type="cta", t0=19, top="HUJJATLAR ONLAYN", main="Rezyume — havola profilda", ask="Saqlab qo'ying!",
+         tags="Skaner • PDF • Rezyume"),
+], caption=f"""Skaner shart emas — hujjatni telefonda skanerlang 📄
+
+1️⃣ Android: Google Disk → «+» → Skanerlash
+2️⃣ iPhone: Zametki (Notes) → kamera belgisi → Hujjatlarni skanerlash
+3️⃣ Chetlarini to'g'rilang → Saqlash — tayyor PDF ni Telegram yoki pochtaga yuboring
+
+🔖 Saqlab qo'ying! Rezyume va obyektivka ham telefondan — {RESUME_URL} (havola profilda)
+
+{CONTACT}
+
+#skaner #pdf {TAGS}"""))
+
+HOOK_BG.update({"20_parol_qoidalari": ("clip2.mp4", 0.0), "21_telegram_himoya": ("clip5.mp4", 0.0),
+                "22_fleshka_yorliq": ("clip1.mp4", 2.0), "23_noutbuk_batareya": ("clip3.mp4", 0.0),
+                "24_kompyuter_ovoz": ("clip1.mp4", 0.0), "25_excel_tugmalar": ("clip4.mp4", 7.5),
+                "26_sms_kod_firibgar": ("clip5.mp4", 1.0), "27_telefon_skaner": ("clip5.mp4", 0.5)})
+for _r in DAILY_REELS:
+    brandify(_r)
+REELS.extend(DAILY_REELS)
+
+VOICE.update({
+    "20_parol_qoidalari": [
+        "Parolingiz kuchlimi? Uchta oddiy qoida.",
+        "Birinchi: kamida o'n ikkita belgi. Bir, ikki, uch yoki ismingiz emas. Uzun ibora, raqam va belgi qo'shing.",
+        "Ikkinchi: har bir saytga boshqa parol qo'ying. Bittasi o'g'irlansa, hammasi ochilib qolmaydi.",
+        "Uchinchi: ikki bosqichli himoyani yoqing. Parolni bilsa ham, kira olmaydi.",
+        SAVE, OUTRO_VO],
+    "21_telegram_himoya": [
+        "Telegramingizni o'g'irlashmasin! Uchta sozlama.",
+        "Birinchi: kodni hech kimga bermang. Adashib yubordim, kodni ayting, deganlar firibgar.",
+        "Ikkinchi: sozlamalar, maxfiylik va xavfsizlik, ikki bosqichli tekshiruv. Qo'shimcha parol qo'ying.",
+        "Uchinchi: sozlamalar, qurilmalar. Begona qurilma bo'lsa, boshqa seanslarni tugating.",
+        "Saqlab qo'ying va yaqinlaringizga yuboring!",
+        OUTRO_VO],
+    "22_fleshka_yorliq": [
+        "Fleshkadagi fayllar yorliqqa aylandimi? Bu virus, fayllaringiz joyida.",
+        "Birinchi: yorliqlarni ochmang. Har bosishda virus ishga tushadi.",
+        "Ikkinchi: provodnikda ko'rinish bo'limiga kiring va yashirin elementlarni yoqing. Fayllaringiz ko'rinadi.",
+        "Uchinchi: fleshkani antivirus bilan tekshiring.",
+        "Uddalay olmasangiz, fayllarni qutqaramiz. Saqlab qo'ying!",
+        OUTRO_VO],
+    "23_noutbuk_batareya": [
+        "Noutbuk zaryadi tez tugayaptimi? Uchta sozlama.",
+        "Birinchi: Win va I ni bosing. Tizim, quvvat va batareya, energiya tejash rejimini yoqing.",
+        "Ikkinchi: ekran yorqinligini ellik, oltmish foizga tushiring. Ekran eng ko'p quvvat yeydi.",
+        "Uchinchi: Kontrol, Shift va Esk ni bosing va keraksiz dasturlarni yoping.",
+        "Saqlab qo'ying! Kerak bo'lsa, batareyani almashtiramiz.",
+        OUTRO_VO],
+    "24_kompyuter_ovoz": [
+        "Kompyuterda ovoz yo'qmi? Uchta tekshiruv.",
+        "Birinchi: pastki o'ng burchakdagi ovoz belgisini tekshiring. O'chirilgan emasmi?",
+        "Ikkinchi: sozlamalar, tizim, ovoz. Chiqish qurilmasini to'g'ri tanlang, karnay yoki naushnik.",
+        "Uchinchi: ovoz belgisini o'ng tugma bilan bosing va ovoz muammolarini aniqlashni tanlang.",
+        "Saqlab qo'ying! Yordam bermasa, drayverni o'rnatamiz.",
+        OUTRO_VO],
+    "25_excel_tugmalar": [
+        "Eksel'da tez ishlang! Beshta foydali tugma.",
+        "Alt va teng: ustun yig'indisi.",
+        "Kontrol va nuqtali vergul: bugungi sana.",
+        "Kontrol, Shift va El: filtr qo'yish.",
+        "Kontrol va pastga strelka: jadval oxiriga sakrash.",
+        "Ef to'rt: oxirgi amalni takrorlash.",
+        "Saqlab qo'ying! Yana kerak bo'lsa, izohga Eksel deb yozing.",
+        OUTRO_VO],
+    "26_sms_kod_firibgar": [
+        "SMS kodini so'rashdimi? Bu firibgar!",
+        "Bank hech qachon kod so'ramaydi. Bank xodimi qo'ng'iroq qilsa, telefonni qo'ying va bankka o'zingiz qo'ng'iroq qiling.",
+        "Yutuq, bonus yoki karta bloklandi degan havolalarga karta ma'lumotini kiritmang.",
+        "Klik, Peymi, bank va Telegram kodlari faqat siz uchun. Hech kimga aytmang.",
+        "Saqlab qo'ying va yaqinlaringizga yuboring!",
+        OUTRO_VO],
+    "27_telefon_skaner": [
+        "Skaner shart emas! Hujjatni telefonda skanerlang.",
+        "Androidda: Gugl Disk, plyus tugmasi, keyin skanerlash.",
+        "Ayfonda: zametki ilovasi, kamera belgisi, hujjatlarni skanerlash.",
+        "Chetlarini to'g'rilang va saqlang. Tayyor pe de ef ni Telegram yoki pochtaga yuboring.",
+        "Rezyume ham telefondan. Havola profilda!",
+        OUTRO_VO],
+})
