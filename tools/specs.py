@@ -2,7 +2,7 @@
 from reelkit import RED, GREEN, WHITE
 
 TAGS = "#kompyuterustasi #qorovulbozor #buxoro"
-CONTACT = "Kompyuter ta'mirlash, Windows o'rnatish, litsenziya — Green IT, Qorovulbozor\n📞 +998 91 448 23 88"
+CONTACT = "Kompyuter ta'mirlash, Windows o'rnatish, litsenziya — Green IT, Qorovulbozor\n📞 +998 91 448 23 88\n🌐 green-it-service.uz"
 
 def K(at, v, y=780, until=None):
     d = {"k": "keys", "at": at, "v": v, "y": y}
@@ -1013,4 +1013,74 @@ VOICE.update({
         "Chetlarini to'g'rilang va saqlang. Tayyor pe de ef ni Telegram yoki pochtaga yuboring.",
         "Rezyume ham telefondan. Havola profilda!",
         OUTRO_VO],
+})
+
+# ─── Замены 22.11: вместо 21_telegram_himoya (23.11 14:30) и 14_telefon_reklama (29.11 19:00) ───
+SWAP_REELS = []
+SWAP_REELS.append(dict(slug="28_wifi_qr", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="WI-FI PAROLINI", l2="UNUTDINGIZMI?", sub="Telefondan QR bilan ulashing"),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Android:", h2="Wi-Fi sozlamalari", items=[
+        P(0.4, [("Sozlamalar → Wi-Fi", "n"), ("Ulangan tarmoq", "n"), ("Ulashish → QR kod", "g")], y=800, stagger=0.8)]),
+    dict(type="step", t0=8.5, t1=14, num="2 / 3", h1="Mehmon telefoni", h2="QR ni skanerlaydi", items=[
+        P(0.4, [("Kamera → QR kod", "g")], y=860, arrows=False),
+        T(1.4, "Parolni aytish shart emas", 1020)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="iPhone'da", h2="ham bor", items=[
+        P(0.4, [("Sozlamalar → Wi-Fi → (i)", "n"), ("Parol — Face ID bilan", "g")], y=820, stagger=0.8)]),
+    dict(type="cta", t0=19, top="WI-FI SOZLASH", main="Saqlab qo'ying — kerak bo'ladi", ask="Router sozlash kerakmi?",
+         tags="Router • Wi-Fi • Tarmoq"),
+], caption=f"""Wi-Fi parolini unutdingizmi? Telefondan QR kod bilan ulashing 📶
+
+1️⃣ Android: Sozlamalar → Wi-Fi → ulangan tarmoq → Ulashish — QR kod va parol chiqadi
+2️⃣ Mehmon telefoni kamerasi bilan QR ni skanerlaydi — parolni aytish shart emas
+3️⃣ iPhone: Sozlamalar → Wi-Fi → (i) → Parol — Face ID bilan ko'rinadi
+
+🔖 Saqlab qo'ying! Routerni sozlab beramiz.
+Siz bu usulni bilarmidingiz? 👇
+
+{CONTACT}
+
+#wifi #telefon {TAGS}"""))
+
+SWAP_REELS.append(dict(slug="29_telefon_batareya", dur=22, scenes=[
+    dict(type="hook", t0=0, t1=3, l1="TELEFON ZARYADI", l2="TEZ TUGAYAPTIMI?", sub="3 ta sozlama",
+         meter=("Batareya", 0.15, RED)),
+    dict(type="step", t0=3, t1=8.5, num="1 / 3", h1="Kim ko'p yeyotganini", h2="ko'ring", items=[
+        P(0.4, [("Sozlamalar", "n"), ("Batareya", "n"), ("Ilovalar bo'yicha sarf", "g")], y=800, stagger=0.8)]),
+    dict(type="step", t0=8.5, t1=14, num="2 / 3", h1="Yorqinlik va", h2="qorong'i rejim", items=[
+        P(0.4, [("Avto-yorqinlik: yoqilgan", "g"), ("Qorong'i rejim", "g")], y=820, arrows=False, gap=150, stagger=0.8)]),
+    dict(type="step", t0=14, t1=19, num="3 / 3", h1="Keraksiz", h2="joylashuvni o'chiring", items=[
+        P(0.4, [("GPS faqat kerak bo'lganda", "g")], y=860, arrows=False),
+        T(1.4, "Fonda doim ishlasa — quvvat ketadi", 1020)]),
+    dict(type="cta", t0=19, meter=("Batareya", 0.15, 0.85, RED, GREEN), ask="Batareya eskirganmi?",
+         tags="Telefon • Dasturlar • Ta'mirlash"),
+], caption=f"""Telefon zaryadi tez tugayaptimi? 3 ta sozlama 🔋
+
+1️⃣ Sozlamalar → Batareya — qaysi ilova ko'p quvvat yeyotganini ko'ring
+2️⃣ Avto-yorqinlik va qorong'i rejimni yoqing
+3️⃣ Joylashuvni (GPS) faqat kerak bo'lganda yoqing — fonda doim ishlasa, quvvat ketadi
+
+🔖 Saqlab qo'ying! Yordam bermasa — telefon dasturini tekshirib, sozlab beramiz.
+Telefoningiz necha soat ishlaydi? 👇
+
+{CONTACT}
+
+#telefon #batareya {TAGS}"""))
+
+HOOK_BG.update({"28_wifi_qr": ("clip2.mp4", 0.0), "29_telefon_batareya": ("clip5.mp4", 1.0)})
+for _r in SWAP_REELS:
+    brandify(_r)
+REELS.extend(SWAP_REELS)
+VOICE.update({
+    "28_wifi_qr": [
+        "Vay-Fay parolini unutdingizmi? Telefondan QR kod bilan ulashing.",
+        "Androidda: sozlamalar, Vay-Fay, ulangan tarmoq, keyin ulashish. QR kod va parol chiqadi.",
+        "Mehmon telefoni kamera bilan QR kodni skanerlaydi. Parolni aytish shart emas.",
+        "Ayfonda ham bor: sozlamalar, Vay-Fay, tarmoq yonidagi belgi, parol. Feys ID bilan ko'rinadi.",
+        SAVE, OUTRO_VO],
+    "29_telefon_batareya": [
+        "Telefon zaryadi tez tugayaptimi? Uchta sozlama.",
+        "Birinchi: sozlamalar, batareya. Qaysi ilova ko'p quvvat yeyotganini ko'ring.",
+        "Ikkinchi: avtomatik yorqinlik va qorong'i rejimni yoqing.",
+        "Uchinchi: joylashuvni faqat kerak bo'lganda yoqing. Fonda doim ishlasa, quvvat ketadi.",
+        SAVE, OUTRO_VO],
 })
